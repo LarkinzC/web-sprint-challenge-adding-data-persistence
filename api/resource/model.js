@@ -5,10 +5,24 @@ function fetch() {
     return db('resources')
 }
 
-function insert(project) {
-    
+async function insert(resource) {
+    try {
+        const [insertedId] = await db('resources').insert(resource)
+        const newResource = await db('resources').where('resource_id', insertedId).first()
+        return newResource
+    } catch(err) {
+        console.log(err)
+    }
 }
 
-module.exports = {fetch}
+function findByName(resource_name) {
+    return db('resources').where('resource_name', resource_name).first()
+}
+
+module.exports = {
+    fetch,
+    insert,
+    findByName
+}
 
 //RESOURCE

@@ -15,6 +15,19 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+router.post("/", async (req, res, next) => {
+  try {
+    const newTask = await Task.insert(req.body);
+    const booleanized = {
+      ...newTask,
+      task_completed: !!newTask.task_completed,
+    };
+    res.json(booleanized);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.use((err, req, res, next) => {
   //eslint-disable-line
   res.status(500).json({

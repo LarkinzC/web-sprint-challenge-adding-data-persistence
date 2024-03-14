@@ -10,11 +10,17 @@ router.get('/', (req, res, next) => {
         .catch(next)
 })
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
+        const possible = await Resource.findByName(req.body.resource_name)
+        if (possible) {
+            res.status(422).json({
+                message: 'Name taken'
+            }) 
+        }
     Resource.insert(req.body)
         .then(newResource => {
             res.json(newResource)
-        })
+        }) .catch(next)
 })
 
 router.use((err, req, res ,next) => { // eslint-disable-line
