@@ -19,7 +19,7 @@ const projects = [
   { project_name: "Bank of Redding", project_completed: 0 },
   {
     project_name: "Old Guys Garage",
-    project_description: "Its a damn long hike",
+    project_description: "Dude looks crotchety",
   },
 ];
 
@@ -88,7 +88,7 @@ const projectAndResources = [
     {resource_id: 3, project_id: 2}
 ]
 
-exports.seed = function async (knex) {
+exports.seed = async function (knex) {
     await knex('resources').insert(resources)
     await knex('projects').insert(projects)
     await knex('tasks').insert(tasks)
