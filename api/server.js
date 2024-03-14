@@ -12,5 +12,8 @@ server.use('/api/resources', resourcesRouter)
 server.use('/api/projects', projectsRouter)
 server.use('/api/tasks', tasksRouter)
 
+server.use('*', (req, res ) => {
+    res.json({ message: 'RESOURCE ROUTER TASK POINT'})
+})
 
 module.exports = server
