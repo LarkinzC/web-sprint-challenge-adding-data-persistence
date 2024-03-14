@@ -20,6 +20,7 @@ const projects = [
   {
     project_name: "Old Guys Garage",
     project_description: "Dude looks crotchety",
+    project_completed: 0
   },
 ];
 
